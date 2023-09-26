@@ -33,13 +33,13 @@ impl Write for RpcOut {
 #[macro_export]
 macro_rules! print {
     ($($arg:tt)*) => {
-        let _ = write!($crate::api::rpc_out, $($arg)*);
+        let _ = write!($crate::api::rpc_out.deref(), $($arg)*);
     };
 }
 
 #[macro_export]
 macro_rules! println {
     ($($arg:tt)*) => {
-        let _ = writeln!($crate::api::rpc_out, $($arg)*);
+        let _ = writeln!($crate::api::rpc_out.deref(), $($arg)*);
     };
 }
