@@ -30,12 +30,14 @@ impl Write for RpcOut {
     }
 }
 
+#[macro_export]
 macro_rules! print {
     ($($arg:tt)*) => {
         let _ = write!($crate::api::rpc_out, $($arg)*);
     };
 }
 
+#[macro_export]
 macro_rules! println {
     ($($arg:tt)*) => {
         let _ = writeln!($crate::api::rpc_out, $($arg)*);
