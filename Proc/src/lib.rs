@@ -10,6 +10,8 @@ pub fn main(_attrs: TokenStream, input: TokenStream) -> TokenStream {
     let fn_name = &input_fn.sig.ident;
 
     let output = quote! {
+        use mvrocketlib::{print, println};
+
         #input_fn
 
         #[no_mangle]
