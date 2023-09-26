@@ -1,6 +1,6 @@
 [package]
 name = "mvrocketlib"
-version = "1.0.0"
+version = "1.1.0"
 edition = "2021"
 authors = [
     "Maxim Savenkov"
@@ -16,6 +16,6 @@ codegen-units = 1
 debug = false
 
 [dependencies]
-mvrocketlib-macro = { path = "Proc", version = "1.0.0" }
+mvrocketlib-macro = { path = "Proc", version = "1.1.0" }
 mvutils = "0.3.1"
 uuid = "1.4.1"
