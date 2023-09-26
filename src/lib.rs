@@ -1,5 +1,6 @@
 pub mod api;
 
+use std::io;
 use std::io::Write;
 pub use mvrocketlib_macro::main;
 pub use api::{API, init, send};
@@ -18,11 +19,13 @@ impl RpcOut {
 }
 
 impl Write for RpcOut {
-    fn write(&mut self, data: &[u8]) {
+    fn write(&mut self, data: &[u8]) -> io::Result<usize> {
         self.buffer.extend_from_slice(data);
+        Ok(data.len())
     }
 
-    fn flush(&mut self) {
+    fn flush(&mut self) -> io::Result<()> {
         send(self.buffer.drain(..).collect());
+        Ok(())
     }
 }
