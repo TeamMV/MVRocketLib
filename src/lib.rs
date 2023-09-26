@@ -29,3 +29,15 @@ impl Write for RpcOut {
         Ok(())
     }
 }
+
+macro_rules! print {
+    ($($arg:tt)*) => {
+        let _ = write!($crate::api::rpc_out, $($arg)*);
+    };
+}
+
+macro_rules! println {
+    ($($arg:tt)*) => {
+        let _ = writeln!($crate::api::rpc_out, $($arg)*);
+    };
+}
