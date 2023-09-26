@@ -11,7 +11,7 @@ pub struct RpcOut {
 }
 
 impl RpcOut {
-    fn new() -> Self {
+    pub fn new() -> Self {
         Self {
             buffer: Vec::new()
         }
