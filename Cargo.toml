@@ -5,6 +5,8 @@ edition = "2021"
 authors = [
     "Maxim Savenkov"
 ]
+license-file = "LICENSE"
+description = "The library for making MVRocket programs"
 
 [profile.release]
 opt-level = 3
