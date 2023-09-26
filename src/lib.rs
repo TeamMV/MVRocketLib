@@ -9,9 +9,9 @@ pub struct RpcOut {
     buffer: DangerousCell<Vec<u8>>
 }
 
-unsafe impl Sync for RpcOut;
+unsafe impl Sync for RpcOut {}
 
-unsafe impl Send for RpcOut;
+unsafe impl Send for RpcOut {}
 
 impl RpcOut {
     pub fn new() -> Self {
