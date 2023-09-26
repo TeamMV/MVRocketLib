@@ -1,45 +1,43 @@
 pub mod api;
 
-use std::io;
-use std::io::Write;
 pub use mvrocketlib_macro::main;
+use mvutils::unsafe_utils::DangerousCell;
 pub use api::{API, init, send};
 pub use uuid::Uuid;
 
 pub struct RpcOut {
-    buffer: Vec<u8>
+    buffer: DangerousCell<Vec<u8>>
 }
 
 impl RpcOut {
     pub fn new() -> Self {
         Self {
-            buffer: Vec::new()
+            buffer: Vec::new().into()
         }
     }
-}
 
-impl Write for RpcOut {
-    fn write(&mut self, data: &[u8]) -> io::Result<usize> {
-        self.buffer.extend_from_slice(data);
-        Ok(data.len())
+    pub fn write(&self, data: &[u8]) {
+        self.buffer.get_mut().extend_from_slice(data);
     }
 
-    fn flush(&mut self) -> io::Result<()> {
-        send(self.buffer.drain(..).collect());
-        Ok(())
+    pub fn flush(&self) {
+        send(self.buffer.get_mut().drain(..).collect());
     }
 }
 
 #[macro_export]
 macro_rules! print {
     ($($arg:tt)*) => {
-        let _ = write!($crate::api::rpc_out.deref(), $($arg)*);
+        $crate::api::rpc_out.write(format!($($arg)*).as_bytes());
+        $crate::api::rpc_out.flush();
     };
 }
 
 #[macro_export]
 macro_rules! println {
     ($($arg:tt)*) => {
-        let _ = writeln!($crate::api::rpc_out.deref(), $($arg)*);
+        $crate::api::rpc_out.write(format!($($arg)*).as_bytes());
+        $crate::api::rpc_out.write(b"\n");
+        $crate::api::rpc_out.flush();
     };
 }
