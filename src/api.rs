@@ -5,7 +5,7 @@ use uuid::Uuid;
 #[derive(Clone, Copy)]
 pub struct API {
     send: fn(Uuid, Vec<u8>),
-    terminate: fn(Uuid)
+    _terminate: fn(Uuid)
 }
 
 create_once! {
@@ -20,8 +20,4 @@ pub fn init(a: *const API, i: *const Uuid) {
 
 pub fn send(message: Vec<u8>) {
     (api.send)(*id, message)
-}
-
-pub fn terminate() {
-    (api.terminate)(*id)
 }
