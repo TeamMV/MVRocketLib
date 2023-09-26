@@ -1,0 +1,19 @@
+[package]
+name = "mvrocketlib"
+version = "1.0.0"
+edition = "2021"
+authors = [
+    "Maxim Savenkov"
+]
+
+[profile.release]
+opt-level = 3
+strip = true
+lto = true
+codegen-units = 1
+debug = false
+
+[dependencies]
+mvrocketlib-macro = { path = "Proc" }
+mvutils = "0.3.1"
+uuid = "1.4.1"
