@@ -1,1 +1,0 @@
-/home/max/Desktop/Coding/Rust/MVRocketLib/Proc/target/package/mvrocketlib-macro-1.0.0/target/debug/libmvrocketlib_macro.so: /home/max/Desktop/Coding/Rust/MVRocketLib/Proc/target/package/mvrocketlib-macro-1.0.0/src/lib.rs
